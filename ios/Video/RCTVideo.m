@@ -1480,7 +1480,7 @@ static int const RCTVideoUnset = -1;
 
 - (void)videoPlayerViewControllerWillDismiss:(AVPlayerViewController *)playerViewController
 {
-  if (_playerViewController == playerViewController && self.onVideoFullscreenPlayerWillDismiss)
+  if (_playerViewController == playerViewController && _fullscreenPlayerPresented && self.onVideoFullscreenPlayerWillDismiss)
   {
     @try{
       [_playerViewController.contentOverlayView removeObserver:self forKeyPath:@"frame"];
@@ -1493,7 +1493,7 @@ static int const RCTVideoUnset = -1;
 
 - (void)videoPlayerViewControllerDidDismiss:(AVPlayerViewController *)playerViewController
 {
-  if (_playerViewController == playerViewController && _fullscreenPlayerPresented)
+  if (_playerViewController == playerViewController)
   {
     _fullscreenPlayerPresented = false;
     _presentingViewController = nil;
